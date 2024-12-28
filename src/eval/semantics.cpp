@@ -313,7 +313,7 @@ Number Semantics::abs(const Number& a) {
   if (a == Number::INF) {
     return Number::INF;
   }
-  return (a < Number::ZERO) ? mul(a, -1) : a;
+  return (a < Number::ZERO) ? sub(0, a) : a;
 }
 
 Number Semantics::getPowerOf(Number value, const Number& base) {
