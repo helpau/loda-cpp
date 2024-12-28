@@ -1,4 +1,4 @@
-CXXFLAGS += -I. -O2 -g -Wall -Werror -fmessage-length=0 -std=c++17
+CXXFLAGS += -I. -O2 -g -Wall -Werror -fmessage-length=0 -std=c++17 -flto
 
 ifdef LODA_VERSION
 CXXFLAGS += -DLODA_VERSION=$(LODA_VERSION)
