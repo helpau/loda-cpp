@@ -76,7 +76,7 @@ class BigNumber {
 
   void divBig(const BigNumber& n);
 
-  std::array<uint64_t, NUM_WORDS> words;
+  std::array<uint64_t, NUM_WORDS> words = {0};
   bool is_negative;  // we don't want to expose this
   bool is_infinite;
 };

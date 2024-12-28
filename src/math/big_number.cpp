@@ -6,7 +6,7 @@
 #include <vector>
 
 BigNumber::BigNumber() : is_negative(false), is_infinite(false) {
-  words.fill(0);
+  // words.fill(0);
 }
 
 BigNumber::BigNumber(int64_t value) {
