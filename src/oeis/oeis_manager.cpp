@@ -121,15 +121,14 @@ void OeisManager::load() {
 void OeisManager::loadData() {
   std::string path = Setup::getOeisHome() + "stripped";
   std::ifstream stripped(path);
-  std::ifstream stripped_for_lines_count(path);
-  if (!stripped_for_lines_count.good()) {
+  if (!stripped.good()) {
     Log::get().error("OEIS data not found: " + path, true);
   }
-  auto line_count =
-      std::count_if(std::istreambuf_iterator<char>{stripped_for_lines_count},
-                    {}, [](char c) { return c == '\n'; });
+  auto line_count = std::count_if(std::istreambuf_iterator<char>{stripped}, {},
+                                  [](char c) { return c == '\n'; });
   line_count++;
   sequences.reserve(line_count);
+  stripped.seekg(0);
   std::string line;
   std::string buf;
   size_t pos;
