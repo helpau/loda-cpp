@@ -121,14 +121,15 @@ void OeisManager::load() {
 void OeisManager::loadData() {
   std::string path = Setup::getOeisHome() + "stripped";
   std::ifstream stripped(path);
-  if (!stripped.good()) {
+  std::ifstream stripped_for_lines_count(path);
+  if (!stripped_for_lines_count.good()) {
     Log::get().error("OEIS data not found: " + path, true);
   }
-  auto line_count = std::count_if(std::istreambuf_iterator<char>{stripped}, {},
-                                  [](char c) { return c == '\n'; });
+  auto line_count =
+      std::count_if(std::istreambuf_iterator<char>{stripped_for_lines_count},
+                    {}, [](char c) { return c == '\n'; });
   line_count++;
   sequences.reserve(line_count);
-  sequences.resize(line_count);
   std::string line;
   std::string buf;
   size_t pos;
@@ -183,7 +184,7 @@ void OeisManager::loadData() {
     }
 
     // add sequence to index
-    sequences[id] = OeisSequence(id, "", seq_full);
+    sequences.push_back(OeisSequence(id, "", seq_full));
     loaded_count++;
   }
 }
