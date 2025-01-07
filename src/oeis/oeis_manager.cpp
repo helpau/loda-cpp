@@ -124,6 +124,7 @@ void OeisManager::loadData() {
   if (!stripped.good()) {
     Log::get().error("OEIS data not found: " + path, true);
   }
+  sequences.reserve(400000);
   std::string line;
   std::string buf;
   size_t pos;
