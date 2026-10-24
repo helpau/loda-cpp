@@ -1,5 +1,13 @@
 CXXFLAGS += -I. -g -Wall -Werror -fmessage-length=0 -std=c++17
 
+# boost::multiprecision (header-only) is used for big number arithmetic.
+# On macOS, boost is typically installed via Homebrew; on Linux, the system
+# include paths usually cover it, so no extra flag is needed there.
+BOOST_PREFIX := $(shell brew --prefix boost 2>/dev/null)
+ifneq ($(strip $(BOOST_PREFIX)),)
+CXXFLAGS += -I$(BOOST_PREFIX)/include
+endif
+
 # Default curl libs for dynamic linking (can be overridden by platform-specific makefiles)
 CURL_LIBS ?= -lcurl
 
