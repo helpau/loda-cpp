@@ -5,7 +5,7 @@ on:
 
 jobs:
   create-release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Generate Version
         id: generate-version
@@ -41,9 +41,9 @@ jobs:
       upload_url: ${{ steps.create-release.outputs.upload_url }}
   build-linux-x86:
     needs: create-release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     container:
-      image: debian:11 # Debian Bullseye with GLIBC 2.31 for maximum compatibility
+      image: debian:12
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -63,9 +63,9 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
   build-linux-arm64:
     needs: create-release
-    runs-on: ubuntu-22.04-arm
+    runs-on: ubuntu-24.04-arm
     container:
-      image: debian:11 # Debian Bullseye with GLIBC 2.31 for maximum compatibility
+      image: debian:12
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
