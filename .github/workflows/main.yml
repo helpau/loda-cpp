@@ -52,6 +52,8 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: brew install boost@1.92
       - name: Build
         run: cd src && make -f Makefile.macos-x86.mk
       - name: Test
@@ -60,6 +62,8 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: brew install boost@1.92
       - name: Build
         run: cd src && make -f Makefile.macos-arm64.mk
       - name: Test

@@ -88,6 +88,8 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: brew install boost@1.92
       - name: Build
         run: cd src && make -f Makefile.macos-x86.mk loda LODA_PLATFORM=macos-x86 LODA_VERSION=${{ needs.create-release.outputs.version }}
       - name: Upload
@@ -104,6 +106,8 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: brew install boost@1.92
       - name: Build
         run: cd src && make -f Makefile.macos-arm64.mk loda LODA_PLATFORM=macos-arm64 LODA_VERSION=${{ needs.create-release.outputs.version }}
       - name: Upload
