@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libcurl4-openssl-dev zlib1g-dev curl git
+          DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libcurl4-openssl-dev libboost-dev zlib1g-dev curl git
       - name: Build
         run: cd src && make -f Makefile.linux-x86.mk
       - name: Install external tools
@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libcurl4-openssl-dev zlib1g-dev
+          DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libcurl4-openssl-dev libboost-dev zlib1g-dev
       - name: Build
         run: cd src && make -f Makefile.linux-arm64.mk
       - name: Test
@@ -100,7 +100,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y lcov libcurl4-openssl-dev
+        run: sudo apt-get update && sudo apt-get install -y lcov libcurl4-openssl-dev libboost-dev
       - name: Generate
         run: cd src && make -f Makefile.linux-x86.mk coverage
       - name: Upload
